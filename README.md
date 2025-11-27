@@ -6,7 +6,7 @@ This is a personal portfolio website for Bildad Gitonga, showcasing skills, proj
 
 The project is live and accessible at:
 
-🔗 https://git-onga.github.io/hackathon-plp/
+🔗 https://git-onga.github.io/protifolio/
 
 This site is hosted using GitHub Pages and automatically updates with the latest changes from the main branch.
 
@@ -29,4 +29,5 @@ This site is hosted using GitHub Pages and automatically updates with the latest
 
 
 This project is for personal use and demonstration purposes.
+
 
