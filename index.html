@@ -1,1035 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bildad Gitonga | Personal Portifolio</title>
-    <style>
-        /* __Global_Styles__*/
-
-        /* Animation & Color Variables */
-        :root {         
-            --primary-color: #101b37;
-            --secondary-color: hsl(332, 85%, 48%);
-            --accent-color: rgb(1, 209, 250);
-            --light-color: #fffafc;
-            --dark-color: #020a1f;
-            --loader-text-color: #f0f0f0;
-            --animation-duration: 1s;
-        }
-        
-        /* Resetting default styles */
-        * {                      
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {                      
-            background-color: var(--primary-color);
-            color: var(--light-color);
-            line-height: 1.6;
-        }
-        
-        /* Header links styles */
-        a {                 
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: color var(--animation-duration) ease;
-        }
-        
-        a:hover {
-            color: var(--secondary-color);
-        }
-        
-         /* All containers */
-        .container {      
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* __Header_Styles__ */
-
-        header {
-            background-color: var(--primary-color);
-            border-bottom: 1px solid var(--accent-color);
-            color: white;
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            height: 100px;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            position: relative; /* Added for z-index context */
-            padding: 0 20px; /* Added padding for mobile */
-        }
-
-        /* Logo Styles */
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            animation: fadeInDown var(--animation-duration) ease;
-            z-index: 200;
-            margin-left: 2vw; /* Pushes other elements to the right */
-        }
-
-        .logo span {
-            color: var(--accent-color);
-        }
-
-        /* Vector/Image Styles */
-        .vector-container {
-            padding-top: 5px;
-            z-index: 200;
-            margin-left: 20px; /* Spacing from other elements */
-        }
-
-        .vector {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: block; /* Ensure it's visible */
-        }
-
-        /* Navigation - Desktop Styles */
-        .nav-container {
-            display: block;
-        }
-
-        .nav-tabs {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-tabs li {
-            margin-left: 20px;
-        }
-
-        .nav-tabs li a {
-            color: white;
-            font-weight: 500;
-            position: relative;
-            text-decoration: none;
-            padding: 5px 0;
-        }
-
-        .nav-tabs li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--secondary-color);
-            bottom: -5px;
-            left: 0;
-            transition: width var(--animation-duration) ease;
-        }
-
-        .nav-tabs li a:hover::after {
-            width: 100%;
-        }
-
-        /*__Hero_Section__*/
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; 
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 80px 8% 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero .container {
-            color: white;
-            flex: 1;
-            max-width: 800px;
-            margin-top: 60px
-        }
-
-        .hero svg {
-            width: 20rem;
-            font-weight: 700;
-        }
-
-        .hero svg text {
-            font-size: 8rem;
-            stroke-width: 2;
-        }
-
-        .hero svg text.text-body {
-            stroke: var(--loader-text-color);
-
-            /* Stroke Animation Effect on the Hello word */
-            animation: 10s infinite alternate animate-stroke;       
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-
-            /* Fade in Effects on the Elements */
-            animation: fadeInUp 2s ease;         
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-
-            /* Fade in Effects on the Elements */
-            animation: fadeInUp var(--animation-duration) ease;         
-        }
-        
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            background: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all var(--animation-duration) ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {  
-            /* Hover effect on the Call to Action Buttons*/                              
-            background: white;
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-image {
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: rollInright3D 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        }
-
-        .hero-image img {
-            max-height: 60vh;
-            width: auto;
-            max-width: 90%;
-            border-radius: 50px;
-            object-fit: contain;
-
-            /*Pulsing effect on the Hero Image*/
-            animation: pulse-gradient 2s ease infinite alternate;           
-        }
-        
-        /*__About_Section__*/
-
-        .section {
-            padding: 100px 0;
-
-            /* Forces section to be at least viewport height */
-            min-height: 100vh;                  
-            display: flex;
-
-            /* Vertically centers content */
-            align-items: center;   
-            position: relative;
-            z-index: 10;             
-        }
-
-        #about {
-            margin-top: -50px;
-        }
-       
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            color: var;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--light-color);
-            display: inline-block;
-        }
-
-        /* Section title underline decoration */
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 5px;
-            border-radius: 5px;
-            background: var(--secondary-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .about-content  {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 50px;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--light-color);
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-
-            /* Adds a black and white Effect on the image */
-            filter: grayscale(60%);   
-            animation: rollInright3D 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-  
-        }
-
-        .about-image img {
-            max-width: 35vh;
-            width: 100%;
-            border-radius: 20px;
-            transform: scale(1.2);
-            transition: transform 0.3s ease-in-out;
-            
-            /* Removes extra space below image */
-            display: block; 
-
-            /* Centers the image */
-            margin: 0 auto; 
-        }
-
-        .about-image img:hover {
-            /* Zooms in on hover */
-            transform: scale(1);      
-        }
-                
-        /*__Skills_Section__*/
-
-        .skills {
-            background-color: var(--primary-color);
-            color: white;
-            min-height: 100vh;
-        }
-        
-        .skills .section-title h2 {
-            color: whitesmoke;
-        }
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-             
-        .skill-card {
-            /* Initial state */
-            opacity: 0; /* Start hidden for animation */
-            
-            /* Roll-in animation */
-            animation: rollInleft3D 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            
-            /* Card styling */
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            
-            /* Hover preparation */
-            will-change: transform; /* Optimize for transforms */
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* Hover effect that works post-animation */
-        .skill-card:hover {
-            transform: translateY(-10px) scale(1.03); /* Combines lift and slight zoom */
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .icons {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-            color: var(--accent-color);
-        }
-        
-        .skill-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        /*__Projects_Section__*/
-        .project-section {
-            padding: 100px 0;
-        }
-
-        #projects {
-            scroll-margin-top: 100px; /* Adjust based on header height */
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            perspective: 1000px;
-        }
-
-        .project-card {
-            background: white;
-            color: var(--primary-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transform-origin: center;
-            position: relative;
-            opacity: 0;
-            animation: emerge 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        }
-
-        /* Staggered animations that makes the card emerge one sfter the other */
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.3s; }
-        .project-card:nth-child(3) { animation-delay: 0.5s; }
-
-        .project-card:hover {
-            transform: scale(1.03) translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
-
-        .project-image {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-info {
-            padding: 25px;
-        }
-
-        .project-date {
-            display: block;
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-
-        .project-info h3 {
-            margin-bottom: 12px;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-
-        .tech-stack {
-            margin: 15px 0;
-            display: flex;
-            gap: 12px;
-        }
-
-        .tech-stack i {
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .tech-stack i:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        .project-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .project-btn:hover {
-            background: var(--primary-color);
-            transform: translateX(5px);
-        }
-        
-        /* Contact Section */
-        .contact {
-            background-color: var(--primary-color);
-            
-        }
-        
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--light-color);
-        }
-        
-        .contact-info p {
-            margin-bottom: 30px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--light-color);
-            color: var(--light-color);
-            border-radius: 50%;
-            transition: all var(--animation-duration) ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary-color);
-            transform: translateY(-5px);
-        }
-        
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.1);;
-            color: var(--accent-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            color: var(--secondary-color);
-            background-color: #7a747491;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #7a747491;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer p span {
-            color: var(--accent-color);
-            font-weight: bold;
-            padding: 0 5px 0 5px;
-        }
-        
-        /*__Animations__*/
-
-        /* This animation are triggered when reloading the portfolio. 
-        Kindly reload each sectio to see the effects */
-
-        /* Animated KeyFrames for the Pulsing Animation */
-        @keyframes pulse-gradient {
-            0% {
-                box-shadow: 
-                    0 0 4px var(--accent-color),
-                    0 0 10px 6px var(--accent-color);
-            }
-            60% {
-                box-shadow: 
-                    0 0 0 4px var(--secondary-color),
-                    0 0 20px 8px var(--secondary-color);
-            }
-            100% {
-                box-shadow: 
-                    0 0 0 4px var(--accent-color),
-                    0 0 10px 6px var(--accent-color);
-            }
-        }
-        
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .nav-tabs {
-                display: none;
-            }
-            
-            .hero {
-                flex-direction: column;
-                justify-content: center;
-                padding-top: 120px;
-            }
-            
-            .hero .container {
-                margin-bottom: 40px;
-                margin-top: 50px;
-
-            }
-            
-            .hero-image {
-                display: none;
-            }
-
-            .section {
-                padding: 50px 0;
-                min-height: auto;
-            }
-        }
-
-        /* Animation for the project card that give the emerge effect*/
-        @keyframes emerge {
-            0% {
-                transform: scale(0.5) translateY(50px);
-                opacity: 0;
-                box-shadow: 0 0 0 rgba(0,0,0,0);
-            }
-            100% {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-        }
-        
-        /* Animation for the rolling of the skill-card from left to right */
-        @keyframes rollInleft3D {
-            0% {
-                transform: translateX(-100%) rotateY(-180deg);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0) rotateY(0);
-                opacity: 1;
-            }
-        } 
-
-        /* Animation for the rolling of the hero-img from right to left*/
-        @keyframes rollInright3D {
-        0% {
-            opacity: 0;
-            transform: 
-            translateX(100%) /* Start from right */
-            rotateY(-180deg) /* Flip direction for right-to-left */
-            rotateZ(90deg);  /* Initial roll angle */
-        }
-        100% {
-            opacity: 1;
-            transform: 
-            translateX(0) 
-            rotateY(0deg) 
-            rotateZ(0deg);
-        }
-        }
-
-        /* Animation for the hero-content and -bnt to have a move up effect */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-                
-        /* Animation for the logo to have a move up effect */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Animation for the hello tex stroke*/
-        @keyframes animate-stroke {
-            0% {
-                fill: transparent;  
-                stroke: var(--accent-color);
-                stroke-dashoffset: 25%;
-                stroke-dasharray: 0 32%;
-            }
-            50% {
-                fill: transparent;
-                stroke: var(--accent-color);
-                stroke-width: 3;
-            }
-            80%, 100% {
-                fill: var(--light-color);
-                stroke: transparent;
-                stroke-width: 0;
-                stroke-dashoffset: -25%;
-                stroke-dasharray:  32% 0;
-            }
-        }
-        
-    </style>
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bildad Gitonga | IT Student &amp; 3D Animator</title>
+  <meta name="description" content="Bildad Gitonga — IT student, certified 3D animator, and mobile developer. View projects, skills, and get in touch.">
+  <meta name="theme-color" content="#06080f">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bildad Gitonga | Portfolio">
+  <meta property="og:description" content="IT student, certified 3D animator, and mobile developer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://git-onga.github.io/protifolio/">
+  <meta property="og:image" content="https://git-onga.github.io/protifolio/pics/ME.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <!-- Logo - now appears first -->
-            <div class="logo">Bildad<span> Gitonga</span></div>
-            
-            <!-- Regular navigation (for desktop) -->
-            <nav class="nav-container">
-            <ul class="nav-tabs">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            </nav>
-            
-            <!-- Profile image/icon -->
-            <div class="vector-container">
-            <img src="pics/profile picture.jpg" alt="Bildad" class="vector">
-            </div>
-            
-        </div>
-    </header> 
 
-    <!-- Hero Section -->
+  <!-- ═══════════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#home" class="logo">Bildad<span> Gitonga</span></a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <img src="pics/profile-picture.jpg" alt="Bildad Gitonga" class="logo-avatar">
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="hero" id="home">
-        <div class="container">
-            <svg viewBox="0 0 400 160">
-                <text x="50%" y="50%" dy=".32rem" text-anchor="middle" class="text-body">
-                    Hello.
-                </text>
-            </svg>
-            <div class="hero-content">
-                <h1>I'm Bildad Gitonga</h1>
-                <p>IT Student & Certified 3D Animator</p>
-                
-            </div>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn">View My Work</a>
-                <a href="pics/Bil_CV_2025.pdf" download="Bil-CV-2025.pdf" class="btn">
-                    Download CV
-                </a>
-            </div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="hero-greeting">Hello, I'm</p>
+          <h1 class="hero-name">Bildad <span class="gradient-text">Gitonga</span></h1>
+          <p class="hero-role">
+            <span id="typed-text"></span><span class="typed-cursor">|</span>
+          </p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="pics/Bil_CV_2025.pdf" download="Bildad-Gitonga-CV-2025.pdf" class="btn btn-outline">
+              Download CV ↓
+            </a>
+          </div>
         </div>
         <div class="hero-image">
-            <img src="pics/ME.jpg" alt="Bildad Gitonga">
+          <img src="pics/ME.jpg" alt="Bildad Gitonga — portrait photo">
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         ABOUT
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="section" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>IT Student and 3D Animation Specialist</h3>
-                    <p>I’m a passionate Information Technology student driven by the desire to build meaningful digital experiences that make life easier. With a focus on mobile development and a growing interest in machine learning, I create practical tech solutions aimed at solving everyday challenges.</p>
-                    <p>Beyond code, I’m a certified 3D animator and part of the KyU Animation Cohort, where I collaborated with the Mozilla RCC Foundation to raise awareness on Responsible Computing in the tech space.</p>
-                    <p>Whether I’m designing intuitive user interfaces in Figma, building functional mobile apps in Flutter, or experimenting with intelligent systems, I always aim to merge creativity with purpose.</p>
-                </div>
-                <div class="about-image">
-                    <img src="pics/IMG20250726110419.jpg" alt="Bildad Gitonga">
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>About Me</h2>
         </div>
+        <div class="about-grid">
+          <div class="about-image reveal-left">
+            <img src="pics/IMG20250726110419.jpg" alt="Bildad Gitonga">
+          </div>
+          <div class="about-text reveal-right">
+            <h3>IT Student &amp; 3D Animation Specialist</h3>
+            <p>
+              I'm a passionate Information Technology student driven by the desire to build
+              meaningful digital experiences that make life easier. With a focus on mobile
+              development and a growing interest in machine learning, I create practical tech
+              solutions aimed at solving everyday challenges.
+            </p>
+            <p>
+              Beyond code, I'm a certified 3D animator and part of the KyU Animation Cohort,
+              where I collaborated with the Mozilla RCC Foundation to raise awareness on
+              Responsible Computing in the tech space.
+            </p>
+            <p>
+              Whether I'm designing intuitive user interfaces in Figma, building functional
+              mobile apps in Flutter, or experimenting with intelligent systems, I always aim
+              to merge creativity with purpose.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section skills" id="skills">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Skills</h2>
-            </div>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                        <path fill="none" d="M0 0h24v24H0z"/>
-                        <path fill="currentColor" d="M8.7 15.9L4.8 12l3.9-3.9a.984.984 0 000-1.4.984.984 0 00-1.4 0l-4.59 4.59a.996.996 0 000 1.41l4.59 4.6c.39.39 1.01.39 1.4 0a.984.984 0 000-1.4zm6.6 0l3.9-3.9-3.9-3.9a.984.984 0 010-1.4.984.984 0 011.4 0l4.59 4.59c.39.39.39 1.02 0 1.41l-4.59 4.6a.984.984 0 01-1.4 0 .984.984 0 010-1.4z"/>
-                    </svg>
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS and JavaScript. Building responsive and accessible websites.</p>
-                </div>
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
-                        <path fill="currentColor" d="M239.1 6.3l-208 78c-18.7 7-31.1 25-31.1 45v225.1c0 18.2 10.3 34.8 26.5 42.9l208 104c13.5 6.8 29.4 6.8 42.9 0l208-104c16.3-8.1 26.5-24.8 26.5-42.9V129.3c0-20-12.4-37.9-31.1-44.9l-208-78C262 2.2 250 2.2 239.1 6.3zM256 68.4l192 72v1.1l-192 78-192-78v-1.1l192-72zm32 356V275.5l160-65v133.9l-160 80z"/>
-                    </svg>
-                    <h3>3D Animation</h3>
-                    <p>Modeling, texturing, rigging, and animation using industry-standard software:- Blender.</p>
-                </div>
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16">
-                        <path fill="currentColor" d="M448 73.1v45.9c0 10.8-57.3 19.6-128 19.6-70.7 0-128-8.8-128-19.6V73.1c0-10.8 57.3-19.6 128-19.6 70.7 0 128 8.8 128 19.6zM448 236v45.9c0 10.8-57.3 19.6-128 19.6-70.7 0-128-8.8-128-19.6V236c0-10.8 57.3-19.6 128-19.6 70.7 0 128 8.8 128 19.6zM128 438.9v-45.9c0-10.8 57.3-19.6 128-19.6 70.7 0 128 8.8 128 19.6v45.9c0 10.8-57.3 19.6-128 19.6-70.7 0-128-8.8-128-19.6zM0 236v45.9c0 10.8 57.3 19.6 128 19.6v-85.1c-70.7 0-128-8.8-128-19.6zM320 438.9c70.7 0 128-8.8 128-19.6v-45.9c0-10.8-57.3-19.6-128-19.6v85.1zM128 156.6c-70.7 0-128-8.8-128-19.6v-45.9c0-10.8 57.3-19.6 128-19.6v85.1z"/>
-                    </svg>
-                    <h3>Database Management</h3>
-                    <p>Beginner-level skills on data storage and retrieval.</p>
-                </div>
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="16" height="16">
-                        <path fill="currentColor" d="M255.03 261.65c6.25 6.25 16.38 6.25 22.63 0l11.31-11.31c6.25-6.25 6.25-16.38 0-22.63L253.25 192l35.71-35.72c6.25-6.25 6.25-16.38 0-22.63l-11.31-11.31c6.25-6.25 6.25-16.38 0-22.63l-11.31-11.31c-6.25-6.25-16.38-6.25-22.63 0l-58.34 58.34c-6.25 6.25-6.25 16.38 0 22.63l58.35 58.34zm96.01-11.3l11.31 11.31c6.25 6.25 16.38 6.25 22.63 0l58.34-58.34c6.25-6.25 6.25-16.38 0-22.63l-58.34-58.34c-6.25-6.25-16.38-6.25-22.63 0l-11.31 11.31c-6.25 6.25-6.25 16.38 0 22.63L386.75 192l-35.71 35.72c-6.25 6.25-6.25 16.38 0 22.63zM624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v288h512V48zm-64 256H128V64h384v240z"/>
-                    </svg>
-                    <h3>Programming</h3>
-                    <p>Python, Java, Flutter, and other programming languages for various applications.</p>
-                </div>
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
-                        <path fill="currentColor" d="M109.46 244.04l134.58-134.56-44.12-44.12-61.68 61.68a7.919 7.919 0 0 1-11.21 0l-11.21-11.21c-3.09-3.09-3.09-8.12 0-11.21l61.68-61.68-33.64-33.65C131.47-3.1 111.39-3.1 99 9.29L9.29 99c-12.38 12.39-12.39 32.47 0 44.86l100.17 100.18zm388.47-116.8c18.76-18.76 18.75-49.17 0-67.93l-45.25-45.25c-18.76-18.76-49.18-18.76-67.95 0l-46.02 46.01 113.2 113.2 46.02-46.03zM316.08 82.71l-297 296.96L.32 487.11c-2.53 14.49 10.09 27.11 24.58 24.56l107.45-18.84L429.28 195.9 316.08 82.71zm186.63 285.43l-33.64-33.64-61.68 61.68c-3.09 3.09-8.12 3.09-11.21 0l-11.21-11.21c-3.09-3.09-3.09-8.12 0-11.21l61.68-61.68-44.14-44.14L267.93 402.5l100.21 100.2c12.39 12.39 32.47 12.39 44.86 0l89.71-89.7c12.39-12.39 12.39-32.47 0-44.86z"/>
-                    </svg>
-                    <h3>Design</h3>
-                    <p>Designed user interfaces and workflows for various applications using tools like Draw.io, Canva and Figma.</p>
-                </div>
-                <div class="skill-card">
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <circle cx="4" cy="4" r="2"/>
-                        <circle cx="20" cy="4" r="2"/>
-                        <circle cx="4" cy="20" r="2"/>
-                        <circle cx="20" cy="20" r="2"/>
-                        <circle cx="12" cy="12" r="2"/>
-                        <line x1="4" y1="4" x2="12" y2="12"/>
-                        <line x1="20" y1="4" x2="12" y2="12"/>
-                        <line x1="4" y1="20" x2="12" y2="12"/>
-                        <line x1="20" y1="20" x2="12" y2="12"/>
-                    </svg>
-                    <h3>Machine Learning</h3>
-                    <p>Beginner-level skills in Machine Learning, Data Analysis and Visualization.</p>
-                </div>
-            </div>
+    <!-- ═══════════════════════════════════════════════════════════════
+         SKILLS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>My Skills</h2>
         </div>
+        <div class="skills-grid">
+          <!-- Web Development -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>HTML, CSS, and JavaScript — building responsive and accessible websites.</p>
+          </div>
+
+          <!-- 3D Animation -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"></path>
+                <polyline points="2.32 6.16 12 11 21.68 6.16"></polyline>
+                <line x1="12" y1="22.76" x2="12" y2="11"></line>
+              </svg>
+            </div>
+            <h3>3D Animation</h3>
+            <p>Modeling, texturing, rigging, and animation using Blender.</p>
+          </div>
+
+          <!-- Database Management -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <h3>Database Management</h3>
+            <p>Foundational skills in data storage, retrieval, and database design.</p>
+          </div>
+
+          <!-- Programming -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3>Programming</h3>
+            <p>Python, Java, Flutter, and other languages for diverse applications.</p>
+          </div>
+
+          <!-- Design -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                <path d="M2 2l7.586 7.586"></path>
+                <circle cx="11" cy="11" r="2"></circle>
+              </svg>
+            </div>
+            <h3>Design</h3>
+            <p>User interfaces and workflows with Draw.io, Canva, and Figma.</p>
+          </div>
+
+          <!-- Machine Learning -->
+          <div class="skill-card reveal">
+            <div class="skill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92a1 1 0 0 0-.75.97V13"></path>
+                <path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.57 3.25 3.92a1 1 0 0 1 .75.97V13"></path>
+                <line x1="12" y1="13" x2="12" y2="17"></line>
+                <circle cx="12" cy="20" r="3"></circle>
+                <line x1="4" y1="20" x2="9" y2="20"></line>
+                <line x1="15" y1="20" x2="20" y2="20"></line>
+              </svg>
+            </div>
+            <h3>Machine Learning</h3>
+            <p>Beginning exploration in ML, data analysis, and visualization.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-        <div class="section-title">
-            <h2>My Projects</h2>
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROJECTS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>My Projects</h2>
         </div>
-        
-        <div class="projects-container">
-            <!-- Project 1 -->
+        <div class="projects-grid">
 
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="pics/Bite-App.jpg" alt="Project Screenshot">
-                </div>
-                <div class="project-info">
-                    <span class="project-date">April 2025</span>
-                    <h3>Food Delivery Mobile App</h3>
-                    <p>Front-end side of the mobile app that allows users to order food at their comfort</p>
-                    <div class="tech-stack">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="24" alt="Flutter">
-                        <svg width="24" height="24" viewBox="0 0 128 128">
-                            <path fill="#00B4AB" d="M64.2 12.3L2.6 73.9 64.2 135.5l61.6-61.6z"/>
-                            <path fill="#00D3C8" d="M64.2 12.3v49.3L2.6 73.9z"/>
-                            <path fill="#00827A" d="M64.2 61.6v73.9l61.6-61.6z"/>
-                        </svg>
-                    </div>
-                    <a href="https://github.com/Git-onga/Flutter-Projects.git" class="project-btn">View Project →</a>
-                </div>
+          <!-- Project 1: Food Delivery App -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="pics/Bite-App.jpg" alt="Food Delivery Mobile App screenshot">
             </div>
-            
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="pics/Educational BST Game Interface.png" alt="Project Screenshot">
-                </div>
-                <div class="project-info">
-                    <span class="project-date">July 2025</span>
-                    <h3>BST Game</h3>
-                    <p>Interactive game that relies on the understanding of the Algorithm BST</p>
-                    <div class="tech-stack">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630" width="24" height="24">
-                            <rect width="630" height="630" fill="#f7df1e" rx="15%"/>
-                            <path d="m423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                            <path fill="#E34F26" d="M71 460L30 0h451l-41 460-185 52"/>
-                            <path fill="#EF652A" d="M256 472l149-41 35-391H256"/>
-                            <path fill="#EBEBEB" d="M256 208h-75l-5-58h80V94H114l15 171h127zm0 147l-64-17-4-45h-56l7 89 117 32z"/>
-                            <path fill="#FFF" d="M255 208v57h70l-7 73-63 17v59l117-32 16-174zm0-114v56h137l5-56z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                            <path fill="#264DE4" d="M72 460L30 0h451l-42 460-184 52"/>
-                            <path fill="#2965F1" d="M256 472l149-41 35-391H256"/>
-                            <path fill="#EBEBEB" d="M256 208h-75l-5-58h80V94H124l15 171h127zm0 147l-64-17-4-45h-56l7 89 117 32z"/>
-                            <path fill="#FFF" d="M255 208v57h70l-7 73-63 17v59l117-32 16-174zm0-114v56h137l5-56z"/>
-                        </svg>
-                    </div>
-                    <a href="https://github.com/Git-onga/BST-game.git" class="project-btn">View Project →</a>
-                </div>
+            <div class="project-body">
+              <span class="project-date">April 2025</span>
+              <h3>Food Delivery Mobile App</h3>
+              <p>Front-end mobile app that allows users to order food at their comfort.</p>
+              <div class="tech-icons">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" title="Flutter">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart" title="Dart">
+              </div>
+              <a href="https://github.com/Git-onga/Flutter-Projects.git" target="_blank" class="project-link">View Project →</a>
             </div>
+          </div>
 
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="pics/portfolio.jpg" alt="Project Screenshot">
-                </div>
-                <div class="project-info">
-                    <span class="project-date">Aug 2025</span>
-                    <h3>Portfolio Website</h3>
-                    <p>Portfolio website with css animation</p>
-                    <div class="tech-stack">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                            <path fill="#E34F26" d="M71 460L30 0h451l-41 460-185 52"/>
-                            <path fill="#EF652A" d="M256 472l149-41 35-391H256"/>
-                            <path fill="#EBEBEB" d="M256 208h-75l-5-58h80V94H114l15 171h127zm0 147l-64-17-4-45h-56l7 89 117 32z"/>
-                            <path fill="#FFF" d="M255 208v57h70l-7 73-63 17v59l117-32 16-174zm0-114v56h137l5-56z"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                            <path fill="#264DE4" d="M72 460L30 0h451l-42 460-184 52"/>
-                            <path fill="#2965F1" d="M256 472l149-41 35-391H256"/>
-                            <path fill="#EBEBEB" d="M256 208h-75l-5-58h80V94H124l15 171h127zm0 147l-64-17-4-45h-56l7 89 117 32z"/>
-                            <path fill="#FFF" d="M255 208v57h70l-7 73-63 17v59l117-32 16-174zm0-114v56h137l5-56z"/>
-                        </svg>
-                    </div>
-                    <a href="#" class="project-btn">View Project →</a>
-                </div>
+          <!-- Project 2: BST Game -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="pics/Educational BST Game Interface.png" alt="BST Game Interface screenshot">
             </div>
+            <div class="project-body">
+              <span class="project-date">July 2025</span>
+              <h3>BST Game</h3>
+              <p>Interactive educational game based on Binary Search Tree algorithms.</p>
+              <div class="tech-icons">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+              </div>
+              <a href="https://github.com/Git-onga/BST-game.git" target="_blank" class="project-link">View Project →</a>
+            </div>
+          </div>
+
+          <!-- Project 3: Portfolio Website -->
+          <div class="project-card reveal">
+            <div class="project-img">
+              <img src="pics/portfolio.jpg" alt="Portfolio Website screenshot">
+            </div>
+            <div class="project-body">
+              <span class="project-date">Aug 2025</span>
+              <h3>Portfolio Website</h3>
+              <p>Personal portfolio with modern CSS animations and responsive design.</p>
+              <div class="tech-icons">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+              </div>
+              <a href="#" class="project-link">View Project →</a>
+            </div>
+          </div>
+
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision. Feel free to reach out through any of the channels below.</p>
-                    <div class="social-links">
-                        <a href="https://github.com/Git-onga" target="_blank">
-                            <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 400" width="24" height="24">
-                                <path fill="rgb(1, 209, 250)" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
-                            </svg></a>
-                        <a href="https://linkedin.com/in/bildad-gitonga-3478b526b" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24">
-                                <path fill="rgb(1, 209, 250)" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:bildadgitonga53@gmail.com">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                                <path fill="rgb(1, 209, 250)" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/>
-                            </svg>  
-                        </i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form action="mailto:bildadgitonga53@gmail.com" method="POST" enctype="text/plain">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+    <!-- ═══════════════════════════════════════════════════════════════
+         CONTACT
+         ═══════════════════════════════════════════════════════════════ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Get In Touch</h2>
         </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal-left">
+            <h3>Let's Connect</h3>
+            <p>
+              I'm always open to discussing new projects, creative ideas, or opportunities
+              to be part of your vision. Feel free to reach out through any of the channels below.
+            </p>
+            <div class="social-links">
+              <!-- GitHub -->
+              <a href="https://github.com/Git-onga" target="_blank" class="social-link" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/in/bildad-gitonga-3478b526b" target="_blank" class="social-link" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <!-- Email -->
+              <a href="mailto:bildadgitonga53@gmail.com" class="social-link" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="contact-form reveal-right">
+            <form action="mailto:bildadgitonga53@gmail.com" method="POST" enctype="text/plain">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 | <span>Bildad Gitonga </span>| All Rights Reserved.</p>
-        </div>
-    </footer>
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 | <span>Bildad Gitonga</span> | All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
 </body>
 </html>
