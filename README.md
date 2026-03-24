@@ -10,27 +10,6 @@ The project is live at:
 
 Hosted on GitHub Pages — auto-updates from the `main` branch.
 
-## File Structure 📂
-
-```
-protifolio/
-├── index.html          ← Semantic HTML (no inline styles)
-├── css/
-│   └── style.css       ← Design system, layout, animations, responsive
-├── js/
-│   └── main.js         ← Hamburger menu, scroll reveal, typed text, active nav
-├── pics/               ← Images, CV PDF
-│   ├── ME.jpg
-│   ├── profile-picture.jpg
-│   ├── Bite-App.jpg
-│   ├── Educational BST Game Interface.png
-│   ├── Tamu-City.jpg
-│   ├── portfolio.jpg
-│   ├── IMG20250726110419.jpg
-│   └── Bil_CV_2025.pdf
-└── README.md
-```
-
 ## Features 🔢
 
 - **Hero Section** — gradient orbs, typed-text role cycling, CTA buttons
