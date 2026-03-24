@@ -480,11 +480,61 @@ ul { list-style: none; }
 }
 
 /* ── Skills ───────────────────────────────────────────────────────── */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
+/*  Skills Carousel  */
+.skills-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-sm) 0 var(--space-md) 0;
+  position: relative;
 }
+
+/* Optional: Fading edges for the carousel */
+.skills-carousel::before,
+.skills-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.skills-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--clr-bg) 0%, transparent 100%);
+}
+.skills-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--clr-bg) 0%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-md);
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.skills-carousel .skill-card {
+  width: 320px;
+  flex-shrink: 0;
+  /* Reset transform from reveal if it conflicts, but keep the hover */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Translate by exactly half the track width minus half the gap to perfectly loop */
+    transform: translateX(calc(-50% - (var(--space-md) / 2)));
+  }
+}
+
 
 .skill-card {
   background: var(--clr-card);
@@ -843,15 +893,119 @@ ul { list-style: none; }
   }
 
   /* Skills */
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
+  /*  Skills Carousel  */
+.skills-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-sm) 0 var(--space-md) 0;
+  position: relative;
+}
+
+/* Optional: Fading edges for the carousel */
+.skills-carousel::before,
+.skills-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.skills-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--clr-bg) 0%, transparent 100%);
+}
+.skills-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--clr-bg) 0%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-md);
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.skills-carousel .skill-card {
+  width: 320px;
+  flex-shrink: 0;
+  /* Reset transform from reveal if it conflicts, but keep the hover */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Translate by exactly half the track width minus half the gap to perfectly loop */
+    transform: translateX(calc(-50% - (var(--space-md) / 2)));
   }
 }
 
+}
+
 @media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
+  /*  Skills Carousel  */
+.skills-carousel {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--space-sm) 0 var(--space-md) 0;
+  position: relative;
+}
+
+/* Optional: Fading edges for the carousel */
+.skills-carousel::before,
+.skills-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.skills-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--clr-bg) 0%, transparent 100%);
+}
+.skills-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--clr-bg) 0%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-md);
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.skills-carousel .skill-card {
+  width: 320px;
+  flex-shrink: 0;
+  /* Reset transform from reveal if it conflicts, but keep the hover */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    /* Translate by exactly half the track width minus half the gap to perfectly loop */
+    transform: translateX(calc(-50% - (var(--space-md) / 2)));
+  }
+}
+
 
   .projects-grid {
     grid-template-columns: 1fr;
